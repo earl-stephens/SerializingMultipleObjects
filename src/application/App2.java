@@ -14,9 +14,13 @@ public class App2 {
 		String pathString = "test.bin";
 		
 		try(var os = new ObjectInputStream(new FileInputStream(pathString))) {
-			Person p = (Person)os.readObject();
+			//Person p = (Person)os.readObject();
+			Serializable[] people = (Serializable[])os.readObject();
 			
-			System.out.println(p);
+			for(var p: people) {
+				System.out.println(p);
+			}
+			
 		}
 		catch(FileNotFoundException e) {
 			System.out.println("Cannot open file: " + pathString);
